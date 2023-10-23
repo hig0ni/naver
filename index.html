@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+    <title>NAVER</title>
+    <style>
+        :root {
+            --color_title: #080808;
+            --color_title_rgb: 8,8,8;
+            --color_body: #101010;
+            --color_body_rgb: 16,16,16;
+            --color_caption1: #404040;
+            --color_caption1_rgb: 64,64,64;
+            --color_caption2: #606060;
+            --color_caption2_rgb: 96,96,96;
+            --color_search: #000;
+            --color_search_rgb: 0,0,0;
+            --color_border_out: #e3e5e8;
+            --color_border_out_rgb: 227,229,232;
+            --color_border_in: #ebebeb;
+            --color_border_in_rgb: 235,235,235;
+            --color_border_in_divider: #ebebeb;
+            --color_border_in_divider_rgb: 235,235,235;
+            --color_border_in_exception: #ebebeb;
+            --color_border_in_exception_rgb: 235,235,235;
+            --color_button_border: #dadcdf;
+            --color_button_border_rgb: 218,220,223;
+            --color_dot_divider: #d3d5d7;
+            --color_dot_divider_rgb: 211,213,215;
+            --color_block_bg: #fff;
+            --color_block_bg_rgb: 255,255,255;
+            --color_board_bg: #f4f6fa;
+            --color_board_bg_rgb: 244,246,250;
+            --color_option_bg: #f5f7f8;
+            --color_option_bg_rgb: 245,247,248;
+            --color_login_bg: #fafbfb;
+            --color_login_bg_rgb: 250,251,251;
+            --color_menu_widget_bg: #fff;
+            --color_menu_widget_bg_rgb: 255,255,255;
+            --color_setting_bg: #fff;
+            --color_setting_bg_rgb: 255,255,255;
+            --color_button1_bg: #fff;
+            --color_button1_bg_rgb: 255,255,255;
+            --color_button2_bg: #fff;
+            --color_button2_bg_rgb: 255,255,255;
+            --color_news: #3a67ea;
+            --color_news_rgb: 58,103,234;
+            --color_news_econ_stay: #909aab;
+            --color_news_econ_stay_rgb: 144,154,171;
+            --color_news_econ_down: #4f67d6;
+            --color_news_econ_down_rgb: 79,103,214;
+            --color_live_news_price: #f4361e;
+            --color_live_news_price_rgb: 244,54,30;
+            --color_enter: #e538e2;
+            --color_enter_rgb: 229,56,226;
+            --color_enter_bg: #f2f1fb;
+            --color_enter_bg_rgb: 242,241,251;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-size: 10.5px;
+            line-height: 10.5px;
+            margin: 0;
+            padding: 0;
+            letter-spacing: -0.4px;
+            font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif;
+        }
+
+        form, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            text-align: center;
+        }
+
+        #wrap-center {
+            width: 1280px;
+            display: inline-block;
+        }
+
+        #header {
+            position: relative;
+            text-align: left;
+            height: 70px;
+        }
+
+        #header-hamburger, #header-naverpay, #header-navertalk, #header-notice {
+            position: absolute;
+            top: 18px;
+            padding: 10px;
+            display: inline-block;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        #header-hamburger:hover::before, #header-naverpay:hover::before, #header-navertalk:hover::before,  #header-notice:hover::before  {
+             /* z-index는 형제끼리만 먹는다. position이 static이면 안된다. */
+             position: absolute;
+            content: '';
+            z-index: 0;
+            left: 1px;
+            top: 1px;
+            width: 44px;
+            height: 44px;
+            background-color: var(--color_option_bg);
+            border-radius: 50%;
+        }
+
+        #header-hamburger > div, #header-naverpay > div, #header-navertalk > div, #header-notice > div {
+            /* z-index는 형제끼리만 먹는다. position이 static이면 안된다. */
+            position: relative;
+            z-index: 1;
+            width: 26px;
+            height: 26px;
+        }
+
+        #header-hamburger {
+            left: -10px;
+        }
+
+        #header-hamburger > div {
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+            background-size: 434px 414px;
+            background-position: -82px -329px;
+        }
+
+        #header-naverpay {
+            left: 43px;
+            padding: 7px;
+        }
+
+        #header-naverpay > div {
+            width: 32px;
+            height: 32px;
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+            background-size: 434px 414px;
+            background-position: -295px -177px;
+        }
+
+        #header-navertalk {
+            right: 40px;
+        }
+
+        #header-navertalk > div {
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+            background-size: 434px 414px;
+            background-position: -190px -329px;
+        }
+
+        #header-notice {
+            right: -10px;
+        }
+
+        #header-notice > div {
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+            background-size: 434px 414px;
+            background-position: -136px -329px;
+        }
+
+        #main {
+            height: 2100px;
+        }
+
+        .blind {
+            position: absolute;
+            clip: rect(0 0 0 0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+        }
+
+        #search > form {
+            display: inline-flex;
+            width: 708px;
+            height: 60px;
+            border: 1px solid #03c75a;
+            border-radius: 33px;
+            text-align: left;
+        }
+
+        #search > form:hover {
+            box-shadow:  0 2px 4px 0 rgba(0,0,0,.12);
+        }
+        
+
+        #search-svg {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 68px;
+            margin-right: 12px;
+            height: 100%;
+            padding-left: 10px;
+            position: relative;
+            
+        }
+
+        #search > form:focus-within #search-svg::after {     
+            content: '';
+            width: 1px;
+            height: 20px;
+            background-color: #e4e4e4;
+            position: absolute;
+            display: inline-block;
+            right: 0;
+            top: 20px
+        }
+
+        #search-svg::after{
+            display: none;
+        }
+
+        #search-svg svg {
+            width: 24px;
+            height: 24px;
+            fill: #03c75a;
+        }
+
+        #search-input {
+            width: 480px;
+            padding: 17px 0;
+            font-size: 2rem;
+            line-height: 24px;
+            font-weight: bold;
+            border: none;
+            outline: none;
+        }
+
+        #search-input::placeholder {
+            color: white;
+        }
+
+        #search-input:focus::placeholder {
+            color: #e4e4e4;
+        }
+
+        #search-right {
+            display: inline-block;
+            flex: 1;
+            display: flex;
+            align-items: stretch;
+            justify-content: flex-end;
+        }
+
+        #search-keyboard, #search-recent, #search-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        #search-keyboard::before {
+            content: "";
+            display: block;
+            background-image: url(./sp_main.png);
+            background-size: 434px 414px;
+            background-position: -226px -254px;
+            background-repeat: no-repeat;
+            width: 24px;
+            height: 14px;
+        }
+
+        #search-keyboard:hover::before {
+            filter: brightness(0.7);
+        }
+        
+        #search-recent::before {
+            content: "";
+            display: block;
+            background-image: url(./sp_main.png);
+            background-size: 434px 414px;
+            background-position: -133px -201px;
+            background-repeat: no-repeat;
+            width: 10px;
+            height: 6px;
+        }
+
+        #search-button {
+            padding: 17px 27px 16px 10px;
+        }
+        
+        #search-button > div {
+            width: 25px;
+            height: 25px;
+        }
+
+        #search-button > div::before {
+            content: "";
+            display: inline-block;
+            background-image: url(./sp_main.png);
+            background-size: 434px 414px;
+            background-position: -295px -329px;
+            background-repeat: no-repeat;
+            width: 25px;
+            height: 25px;
+        }
+
+        #nav {
+            margin-top: 12px;
+        }
+
+        #nav > ul {
+            display: flex;
+            justify-content: center;
+            font-size: 1.4rem;
+            line-height: 20px;
+        }
+
+        #nav a {
+            text-decoration: none;
+            text-align: center;
+        }
+
+        #nav a div{
+            position: relative;
+        }
+
+        #nav a div::after{
+            position: relative;
+            z-index: 1;
+            content: "";
+            margin: 2px;
+            display: inline-block;
+            background-image: url(./sp_main.png);
+            background-size: 434px 414px;
+            background-repeat: no-repeat;
+            width: 44px;
+            height: 44px;
+        }
+
+        #nav a:visited {
+            color: black;
+        }
+        #nav li {
+            width: 64px;
+            margin-left: 4px;
+            display: flex;
+            justify-content: center;
+        }
+        #nav li:nth-of-type(1) {
+            margin-left: 0;
+        }
+        #nav li a div::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -2px;
+            left: -3px;
+            background-image: url(./sp_main.png);
+            background-size: 434px 414px;
+            background-position: 0px -128px;
+            background-repeat: no-repeat;
+            width: 54px;
+            height: 54px;
+        }
+        #nav li:nth-of-type(1) a div::after{
+            background-position: -250px -90px;
+        }
+        #nav li:nth-of-type(2) a div::after{
+            background-position: -250px 0px;
+        }
+        #nav li:nth-of-type(3) a div::after{
+            background-position: -201px -98px;
+        }
+        #nav li:nth-of-type(4) a div::after{
+            background-position: -90px -209px;
+        }
+        #nav li:nth-of-type(5) a div::after{
+            background-position: 0px -209px;
+        }
+        #nav li:nth-of-type(6) a div::after{
+            background-position: -180px -209px;
+        }
+        #nav li:nth-of-type(7) a div::after{
+            background-position: -45px -209px;
+        }
+        #nav li:nth-of-type(8) a div::after{
+            background-position: -201px 0px;
+            width: 48px;
+            height: 47px;
+            top: -2px;
+        }
+        #nav li:nth-of-type(8) a div::before {
+            margin-left: 3px;
+        }
+        #nav li:nth-of-type(9) a div::after{
+            background-position: -225px -209px;
+        }
+        #nav li:nth-of-type(10) a div::after{
+            background-position: -250px -135px;
+        }
+
+        #nav li a span {
+            display: inline-block;
+            margin-top: 3px;
+        }
+
+        #nav li:nth-of-type(8) a span {
+            margin-top: 0px;
+        }
+        #main {
+            margin-top: 51px;
+            display: flex;
+        }
+        #main-left {
+            width: 830px;
+            margin-right: 30px;
+        }
+        #main-right {
+            width: 420px;
+        }
+        #main-left-ad, #main-right-ad {
+            background-color: gray;
+        }
+        aside[id$=ad] {
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        #main-left-ad {
+            height: 130px;
+            margin-bottom: 16px;
+        }
+        section[id^=main] {
+            box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        #main-weather {
+            background-color: gray;
+        }
+        #main-stock {
+            background-color: gray;
+        }
+        #main-newstand {
+            height: 426px;
+            display: flex;
+            flex-flow: column;
+        }
+        #main-newstand-top, #main-shopping-top {
+            flex: 1;
+            padding: 18px 20px;
+        }
+        #main-newstand-top .dot::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background-color: #d3d5d7;
+            background-color: var(--color_dot_divider);
+            margin: 9px 7px 0;
+            border-radius: 50%;
+            vertical-align: 5px;
+        }
+        .left-section .slash, .left-section .dot {
+            color: rgba(8,8,8,.5);
+            font-weight: 800;
+        }
+        .left-section .slash {
+            position: relative;
+            padding-left: 26px;
+        }
+        .left-section .slash::before {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 4px;
+            left: 13px;
+            width: 1px;
+            height: 15px;
+            background-color: #d3d5d7;
+            background-color: var(--color_dot_divider);
+            transform: skewX(-15deg);
+        }
+        .left-section header {
+            font-size: 1.6rem;
+            color: rgba(8,8,8,.5);
+            display: flex;
+            justify-content: flex-start;
+            line-height: 23px;
+            margin-bottom: 17px;
+        }
+        .left-section header .bold {
+            font-weight: bold;
+            color: black
+        }
+        #main-newstand-gray {
+            display: flex;
+            justify-content: flex-start;
+            height: 50px;
+            padding: 12px 20px;
+            background-color: var(--color_option_bg);
+            border-radius: 4px;
+            font-size: 1.4rem;
+            line-height: 26px;
+        }
+        #main-newstand-gray .left {
+            flex: 1;
+            display: flex;
+        }
+        #main-newstand-gray .left > a:first-of-type {
+            width: 85.5px;
+        }
+        #main-newstand-gray .left > a:first-of-type::after {
+            content: '';
+            background-image: url(./sp_main.png);
+            background-size: 434px 414px;
+            background-position: -154px -201px;
+            background-repeat: no-repeat;
+            width: 9px;
+            height: 6px;
+            display: inline-block;
+            margin: 10px 0 0 5px;
+            vertical-align: 3px;
+        }
+        #main-newstand-animation {
+            padding-left: 25px;
+            position: relative;
+            display: flex;
+        }
+        #main-newstand-animation::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 7px;
+            left: 12px;
+            background-color: #d3d5d7;
+            background-color: var(--color_dot_divider);
+            width: 1px;
+            height: 12px;
+        }
+        #main-newstand-animation > a:first-of-type {
+            position: relative;
+            top: -1px;
+            line-height: 26px;
+        }
+        #main-newstand-animation > a:first-of-type::after {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 3px;
+            background-color: #d3d5d7;
+            background-color: var(--color_dot_divider);
+            margin: 12px 6px 0 6px;
+            border-radius: 50%;
+            vertical-align: 5px;
+        }
+        @keyframes newsAnimation {
+            0% {
+                transform: translateY(0);
+            }
+            20% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-35px);
+            }
+            50% {
+                transform: translateY(-35px);    
+            }
+            80% {
+                transform: translateY(-65px);
+            }
+            90% {
+                transform: translateY(-85px);
+            }
+            90.001% {
+                transform: translateY(20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        #main-newstand-animation-target {
+            width: 380px;
+            display: inline-block;
+            overflow: hidden;
+        }
+        #main-newstand-animation-target > div {
+            animation: newsAnimation 5s 1s infinite;
+        }
+        #main-newstand-animation-target a {
+            text-overflow: ellipsis;
+            width: 380px;
+            white-space: nowrap;
+            display: inline-block;
+            overflow: hidden;
+        }
+        #main-newstand-gray .right {
+            display: flex;
+        }
+        #main-newstand-gray .bold {
+            font-weight: bold;
+            padding-left: 25px;
+            position: relative;
+        }
+        #main-newstand-gray .bold::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 7px;
+            left: 12px;
+            width: 1px;
+            height: 12px;
+            background-color: #d3d5d7;
+            background-color: var(--color_dot_divider);
+        }
+        .left-section a {
+            text-decoration: none;
+        }
+        .left-section a:visited {
+            color: inherit;
+        }
+        .left-section a:hover {
+            text-decoration: underline;
+        }
+        #main-newstand-gird {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            height: 224px;
+            grid-gap: 1px;
+            background-color: var(--color_border_in);
+            grid-template-rows: repeat(4, 1fr);
+            width: 790px;
+            grid-template-columns: repeat(6, 1fr);
+            border: 1px solid var(--color_border_in);
+            border-radius: 4px;
+            margin-top: 18px;
+
+        }
+        #main-newstand-gird > div {
+            height: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .left-section footer {
+            border-top: 1px solid var(--color_border_in);
+            padding: 10px 0 11px;
+            font-size: 1.3rem;
+            line-height: 35px;
+            font-weight: 600;
+            color: #606060;
+            color: var(--color_caption2);
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        #main-login {
+            height: 164px;     
+            padding: 21px 20px 18px;
+            font-size: 1.4rem;
+            display: flex;
+            flex-flow: column;
+        }
+        #main-login > div:first-of-type {
+            line-height: 20px;
+        }
+        #main-login-button {
+            margin-top: 13px;
+            padding: 17px 0;
+            border: 1px solid rgba(0,0,0,.06);
+            height: 56px;
+            border-radius: 4px;
+            background-color: #03c75a;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 16px;
+
+        }
+        #main-login-button i {
+            vertical-align: -1px;
+            background-image: url(./sp_main.png);
+            background-size: 434px 414px;
+            background-position: -120px -166px;
+            background-repeat: no-repeat;
+            width: 72px;
+            height: 14px;
+            display: inline-block;
+            margin: 3px 8px 0 0;
+        }
+        #main-login > div:last-of-type {
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: center;
+        }
+        #main-login > div:last-of-type a {
+            text-decoration: none;
+            color: var(--color_caption2);
+            letter-spacing: -0.4px;
+        }
+        #main-login > div:last-of-type a:first-of-type, #main-login > div:last-of-type a:last-of-type {
+            position: relative;
+            top: 5px;
+        }
+        #main-login > div:last-of-type a:hover {
+            text-decoration: underline;
+        }
+        #main-login > div:last-of-type > a:nth-of-type(2)::before, #main-login > div:last-of-type > a:nth-of-type(2)::after {
+            content: '';
+            display: inline-block;
+            width: 1px;
+            height: 12px;
+            background-color: #d3d5d7;
+            background-color: var(--color_dot_divider);
+            margin: 4px 12px 0;
+
+        }
+        #main-right-ad {
+            height: 240px;
+        }
+        .main-weather-and-stock {
+            padding: 0 18px;
+        }
+        .main-weather-and-stock > header {
+            height: 52px;
+            padding: 6px 0;
+        }
+        .main-weather-and-stock > div {
+            border-top: 1px solid var(--color_border_in)
+        }
+        #main-weather {
+            height: 236px;
+        }
+        #main-stock {
+            height: 236px;
+        }
+        #main-newstand footer .list, #main-newstand footer .grid {
+            position: absolute;
+            border: none;
+            cursor: pointer;
+            top: 0;
+            background-color: transparent;
+        }
+        #main-newstand footer .list {
+            right: 49px;
+            padding: 18px 9px 18px 20px;
+        }
+        #main-newstand footer .list::before {
+            content: '';
+            display: inline-block;
+            background-image: url(./sp_main.png);
+            background-size: 434px 414px;
+            background-position: -257px -356px;
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+        }
+        #main-newstand footer .list:hover::before {
+            background-position: -236px -356px;
+        }
+        #main-newstand footer .grid {
+            right: 0;
+            padding: 18px 20px 18px 9px;
+        }
+        #main-newstand footer .grid::before {
+            content: '';
+            display: inline-block;
+            background-image: url(./sp_main.png);
+            background-size: 434px 414px;
+            background-position: -389px -147px;
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+        }
+        .left-section footer .prev, .left-section footer .next {
+            background: none;
+            border: none;
+            content: '';
+            width: 36px;
+            height: 36px;
+            border: 1px solid #dadcdf;
+            border: 1px solid var(--color_button_border);
+            background-color: #fff;
+            background-color: var(--color_button1_bg);
+            display: inline-block;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,.06);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .left-section footer .prev::before {
+            transform: rotate(180deg);
+        }
+        .left-section footer .prev::before, .left-section footer .next::before {
+            content: "";
+            display: block;
+            background-image: url(./sp_main.png);
+            background-size: 434px 414px;
+            background-position: -165px -402px;
+            background-repeat: no-repeat;
+            width: 10px;
+            height: 12px;    
+        }
+        .left-section footer .text {
+            padding: 0 16px;
+            min-width: 156px !important;
+        }
+        .left-section footer .hot {
+            color: #9858f5;
+        }
+        .left-section footer .news {
+            color: var(--color_news);
+        }
+        .left-section footer .total {
+            color: rgba(96,96,96,.5);
+        }
+        #main-shopping {
+            height: 560px;
+            display: flex;
+            flex-flow: column;
+        }
+        #main-shopping-top {
+            padding-top: 19px;
+        }
+        #main-shopping-top header {
+            margin-bottom: 16px;
+        }
+        #main-shopping footer .text{
+            min-width: 176px;
+        }
+        #main-shopping-gray {
+            display: flex;
+            font-size: 1.4rem;
+            line-height: 21px;
+        }
+        #main-shopping-gray .left {
+            width: 668px;
+            height: 50px;
+            padding: 15px 20px 14px;
+            display: flex;
+            border-radius: 4px;
+            background-color: var(--color_option_bg);
+        }
+        #main-shopping-gray .left > span {
+            position: relative;
+            padding-right: 19px;
+        }
+        #main-shopping-gray .left > span::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: -5px;
+            right: 2px;
+            width: 3px;
+            height: 4px;
+            background-color: #d3d5d7;
+            background-color: var(--color_dot_divider);
+            margin: 12px 6px 0 6px;
+            border-radius: 50%;
+        }
+        #main-shopping-gray .bold {
+            font-weight: 700;
+        }
+        #main-shopping-animation a span:nth-child(1) {
+            display: inline-block;
+            padding-top: 4px;
+            line-height: 13px;
+        }
+        #main-shopping-animation a span:nth-child(1) img {
+            line-height: 13px;
+        }
+        #main-shopping-animation a span:nth-child(2) {
+            margin-left: 8px;
+        }
+        #main-shopping-gray .right {
+            margin-left: auto;
+            padding: 10px 0;
+            font-size: 0;
+        }
+        #main-shopping-gray .right button {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            display: inline-block;
+            border: 1px solid rgba(211,213,215,.8);
+            vertical-align: top;
+            cursor: pointer;
+            border-radius: 4px 0 0 4px;
+            background-color: transparent;
+        }
+        #main-shopping-gray .right .next {
+            border-left: 0;
+            border-radius: 0 4px 4px 0;
+        }
+        #main-shopping-gray .right .prev::before{
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            transform: translate(-50%,-50%) rotate(45deg);
+            margin-left: 2px;
+            border-left: 2px solid #80868c;
+            border-bottom: 2px solid #80868c;
+            margin-left: 1px;
+        }
+        #main-shopping-gray .right .next::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            transform: translate(-50%,-50%) rotate(45deg);
+            margin-left: -2px;
+            border-top: 2px solid #80868c;
+            border-right: 2px solid #80868c;
+            margin-left: 0px;
+        }
+        #main-shopping-gray .right .text {
+            color: #606060;
+            color: var(--color_caption2);
+            display: inline-block;
+            margin: 6px 9px 8px 0;
+            font-size: 1.3rem;
+            line-height: 16px;
+            font-weight: 600;
+            vertical-align: top;
+        }
+        #main-shopping-gray .right .text span:nth-child(2) {
+            color: rgba(113,113,113,.6);
+        }
+        #main-shopping-grid {
+            margin-top: 18px;
+            display: grid;
+            grid-template-rows: 88px 85px 174px;
+            grid-template-columns: 98px 98px 98px 98px 98px 260px;
+            column-gap: 8px;
+        }
+        #main-shopping-grid .item {
+            line-height: 19px;
+            letter-spacing: -.4px;
+            font-size: 1.3rem;
+        }
+        #main-shopping-grid .item > .image {
+            width: 98px;
+            height: 126px;
+            border-radius: 4px;
+            background-color: gray;
+            margin-bottom: 2px
+        }
+        .item:nth-child(8) > .image, .item:nth-child(9) > .image, .item:nth-child(10) > .image, .item:nth-child(11) > .image, .item:nth-child(12) > .image {
+            margin-top: 14px;
+        }
+        #main-shopping-grid .item > .text {
+            text-align: left;
+        }
+        .item:nth-child(1), .item:nth-child(2), .item:nth-child(3), .item:nth-child(4), .item:nth-child(5) {
+            grid-row: 1 / span 2;
+        }
+        .item:nth-child(6), .item:nth-child(7), .item:nth-child(13) > div:first-child {
+            margin-left: 12px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,.05);
+            background: rgba(245,248,251,.6);
+        }
+        .item:nth-child(13) {
+            margin: 12px 0 8px 12px
+        }
+        .item:nth-child(13) > .ad_image {
+            width: 248px;
+            height: 146px;
+            border-radius: 4px;
+            background-color: gray;
+            margin-bottom: 4px;
+        }
+        .item:nth-child(7) {
+            margin-top: 11px;
+        }
+        #main-shopping-top {
+            padding-bottom: 4px;
+        }
+        .item:nth-child(6) div {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 5px;
+            color: var(--color_caption1);
+            font-size: 14px;
+            line-height: 20px;
+        }
+        .item:nth-child(6) div .dot {
+            margin: 9px 0 0;
+            width: 3px;
+            height: 3px;
+            background-color: #d3d5d7;
+            background-color: var(--color_dot_divider);
+            display: inline-block;
+            border-radius: 50%;
+            vertical-align: top;
+        }
+        .item:nth-child(7) ul {
+            list-style: none;
+            position: relative;
+            display: flex;
+        }
+        .item:nth-child(7) ul li {
+            flex: 1 1;
+        }
+        .item:nth-child(7) ul li div:nth-child(1) {
+            width: 34px;
+            height: 34px;
+            position: relative;
+            display: inline-block;
+            border-radius: 50%;
+            background-color: #fff;
+            line-height: 32px;
+            text-align: center;
+            vertical-align: top;
+            border: 1px solid rgba(238,242,248,.8);
+        }
+        .item:nth-child(7) ul li div:nth-child(1)::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-image: url(./sp_main2.png);
+            background-size: 134px 121px;
+            background-repeat: no-repeat;
+            transform: translate(-50%,-50%);
+            width: 32px;
+            height: 32px;
+        }
+        .item:nth-child(7) ul li div:nth-child(2) {
+            color: #404040;
+            color: var(--color_caption1);
+            margin-top: 2px;
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 500;
+        }
+        .item:nth-of-type(7) ul li:nth-of-type(1) div::before {
+            background-position: -34px 0;
+        }
+        .item:nth-of-type(7) ul li:nth-of-type(2) div::before {
+            background-position: -68px -34px;
+        }
+        .item:nth-of-type(7) ul li:nth-of-type(3) div::before {
+            background-position: -34px -34px;
+        }
+        .item:nth-of-type(7) ul li:nth-of-type(4) div::before {
+            background-position: -102px -18px;
+            width: 17px;
+            height: 16px;
+        }
+        </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="wrap-center">
+            <div id="header">
+                <button id="header-hamburger">
+                    <div></div>
+                    <span class="blind">바로가기</span>
+                </button>
+                <button id="header-naverpay">
+                    <div></div>
+                    <span class="blind">네이버 페이</span>
+                </button>
+                <button id="header-navertalk">
+                    <div></div>
+                    <span class="blind">네이버톡</span>
+                </button>
+                <button id="header-notice">
+                    <div></div>
+                    <span class="blind">알림·혜택</span>
+                </button>
+            </div>
+            <div id="search">
+                <form action="">
+                    <a id="search-svg" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"></path></svg>
+                    </a>
+                    <label for="search-input" class="blind">검색어 입력</label>
+                    <input id="search-input" type="text" placeholder="검색어를 입력해 주세요."/>
+                    <div id="search-right">
+                        <button href="#" id="search-keyboard">
+                            <span class="blind">입력도구</span>
+                        </button>
+                        <button href="#" id="search-recent">
+                            <span class="blind">자동완성/최근검색어펼치기</span>
+                        </button>
+                        <button id="search-button">
+                            <div><span class="blind">검색</span></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>메일</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>카페</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>블로그</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>쇼핑</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>뉴스</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>증권</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>부동산</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>지도</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span>웹툰</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <div></div>
+                            <span class="blind">더보기</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <main id="main">
+                <div id="main-left">
+                    <aside id="main-left-ad"></aside>
+                    <section id="main-newstand" class="left-section">
+                        <div id="main-newstand-top">
+                            <header>
+                                <a href="#" class="bold">뉴스스탠드</a>
+                                <a href="#" class="dot">언론사편집</a>
+                                <a href="#" class="slash">엔터</a>
+                                <a href="#" class="slash">스포츠</a>
+                                <a href="#" class="slash">경제</a>
+                            </header>
+                            <div id="main-newstand-gray">
+                                <div class="left">
+                                    <a href="#">전체언론사</a>
+                                    <div id="main-newstand-animation">
+                                        <a href="#">연합뉴스</a>
+                                        <div id="main-newstand-animation-target">
+                                            <div>
+                                                <a href="#">김건희 "네이버 클론코딩 완성" 주가 상승 대박 전망 "5456480000000%"</a>
+                                                <a href="#">[이·팔 전쟁] 가자지구 사망자 5천명 넘어서…"어린이 2천55명"</a>
+                                                <a href="#">尹, '중동신화' 사우디 진출 50주년 축하…"인프라협력 미래 열자"</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <a href="#">뉴스스탠드</a>
+                                    <a href="#" class="bold">뉴스홈</a>
+                                </div>
+                            </div>
+                            <div id="main-newstand-gird">
+                                <div><img src="https://s.pstatic.net/static/newsstand/up/2022/0208/nsd16121208.png" height="20" alt="서울신문" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/005.png" height="20" alt="국민일보" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/021.png" height="20" alt="문화일보" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/up/2020/0708/nsd94830278.png" height="20" alt="스포츠서울" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/031.png" height="20" alt="아이뉴스24" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" height="20" alt="중앙데일리" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/044.png" height="20" alt="코리아헤럴드" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/020.png" height="20" alt="동아일보" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" height="20" alt="조선비즈" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/326.png" height="20" alt="KBS World" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/079.png" height="20" alt="노컷뉴스" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/009.png" height="20" alt="매일경제" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/904.png" height="20" alt="JTBC" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/up/2020/0610/nsd151458769.png" height="20" alt="OSEN" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2019/logo/011.png" height="20" alt="서울경제" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/up/2022/0331/nsd155937506.png" height="20" alt="인천일보" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/up/2022/0704/nsd231551300.png" height="20" alt="중부일보" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/909.png" height="20" alt="기호일보" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/up/2020/0615/nsd10319824.png" height="20" alt="한경잡앤조이" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/355.png" height="20" alt="사이언스타임즈" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/up/2022/1007/nsd161849944.png" height="20" alt="주간경향" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/410.png" height="20" alt="MK스포츠" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/up/2022/0315/nsd181452869.png" height="20" alt="한국농어촌방송" class="news_logo"></div>
+                                <div><img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/806.png" height="20" alt="머니" class="news_logo"></div>
+                            </div>
+                        </div>
+                        <footer>
+                            <button class="prev"><span class="blind">이전 페이지</span></button>
+                            <div class="text"><span class="news">언론사</span>&nbsp;더보기&nbsp;1<span class="total">/4</span></div>
+                            <button class="next"><span class="blind">다음 페이지</span></button>
+                            <button class="list"><span class="blind">목록보기</span></button>
+                            <button class="grid"><span class="blind">격자보기</span></button>
+                        </footer>
+                    </section>
+                    <section id="main-shopping" class="left-section">
+                        <div id="main-shopping-top">
+                            <header>
+                                <a href="#" class="bold">쇼핑</a>
+                                <a href="#" class="slash">맨즈</a>
+                                <a href="#" class="slash">원쁠딜</a>
+                                <a href="#" class="slash">쇼핑라이브</a>
+                            </header>
+                            <div id="main-shopping-gray">
+                                <div class="left">
+                                    <span class="bold">오늘의 혜택</span>
+                                    <div id="main-shopping-animation">
+                                        <a href="#">
+                                            <span><img height="13" src="https://s.pstatic.net/shopping.phinf/20230524_6/dfbbf224-73a7-416c-bf0b-9f63a6cff5b9.jpg" alt="11번가"></span><span>하루만에 바로받네~ 오늘 주문 내일 도착! 11번가 슈팅배송</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <div class="text">
+                                        <span>1</span><span>/18</span>
+                                    </div>
+                                    <button class="prev"><span class="blind">이전페이지</span></button>
+                                    <button class="next"><span class="blind">다음페이지</span></button>
+                                </div>
+                            </div>
+                            <div id="main-shopping-grid">
+                                <div class="item">
+                                    <img class="image" src="https://s.pstatic.net/shopping.phinf/20230918_24/4c89002b-35dc-4357-87bf-991dfeeea96b.jpg?type=f294_378" width="98" height="126" alt="고퀄리티 니트 전품목 최대90%">
+                                    <div class="text">고퀄리티 니트 전품목 최대90%</div>
+                                </div>
+                                <div class="item">
+                                    <img class="image" src="https://s.pstatic.net/shopping.phinf/20231016_26/97776ad6-eb8b-4463-aec5-60d31d663a52.jpg?type=f294_378" width="98" height="126" alt="지금 딱입기좋은 하프코트 코디~!">
+                                    <div class="text">지금 딱입기좋은 하프코트 코디~!</div>
+                                </div>
+                                <div class="item">
+                                    <img class="image" src="https://s.pstatic.net/shopping.phinf/20231020_18/3bbf8ef0-b5fb-4238-8b5b-4edef9145892.jpg?type=f294_378" width="98" height="126" alt="호로록!인기폭발 노마진 이벤트">
+                                    <div class="text">호로록!인기폭발 노마진 이벤트</div>
+                                </div>
+                                <div class="item">
+                                    <img class="image" src="https://s.pstatic.net/shopping.phinf/20231023_9/08f120f9-8054-4c31-98f9-a45a2926c127.jpg?type=f294_378" width="98" height="126" alt="따뜻한HOT웰론 오늘만~1만원대">
+                                    <div class="text">따뜻한HOT웰론 오늘만~1만원대</div>
+                                </div>
+                                <div class="item">
+                                    <img class="image" src="https://s.pstatic.net/shopping.phinf/20231011_16/34306aba-801f-4895-92fd-3fd55b288758.jpg?type=f294_378" width="98" height="126" alt="SET 구성 할인 가을신상 잔뜩~">
+                                    <div class="text">SET 구성 할인 가을신상 잔뜩~</div>
+                                </div>
+                                <div class="item">
+                                    <span class="blind">몰 바로가기</span>
+                                    <div>
+                                        <a><span>쿠팡</span></a>
+                                        <span class="dot"></span>
+                                        <a><span><strong>G마켓</strong></span></a>
+                                        <span class="dot"></span>
+                                        <a><span>옥션</span></a>
+                                        <span class="dot"></span>
+                                        <a><span>11번가</span></a>
+                                    </div>
+                                    <div>
+                                        <a><span>SSG닷컴</span></a>
+                                        <span class="dot"></span>
+                                        <a><span>올리브영</span></a>
+                                        <span class="dot"></span>
+                                        <a><span>위메프</span></a>
+                                        <span class="dot"></span>
+                                        <a><span><strong>GS샵</strong></span></a>
+                                    </div>
+                                    <div>
+                                        <a><span><strong>CJ온스타일</strong></span></a>
+                                        <span class="dot"></span>
+                                        <a><span>패션플러스</span></a>
+                                        <span class="dot"></span>
+                                        <a><span>하프클럽</span></a>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <ul>
+                                        <li>
+                                            <div></div>
+                                            <div>쇼핑홈</div>
+                                        </li>
+                                        <li>
+                                            <div></div>
+                                            <div>리뷰적립</div>
+                                        </li>
+                                        <li>
+                                            <div></div>
+                                            <div>주문</div>
+                                        </li>
+                                        <li>
+                                            <div></div>
+                                            <div>장바구니</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="item">
+                                    <img class="image" src="https://s.pstatic.net/shopping.phinf/20231019_21/aea79f4a-5516-40cb-94f5-04790783f063.jpg?type=f294_378" width="98" height="126" alt="진주템누가없어 반지1+1 특가">
+                                    <div class="text">진주템누가없어 반지1+1 특가</div>
+                                </div>
+                                <div class="item">
+                                    <img class="image" src="https://s.pstatic.net/shopping.phinf/20231023_25/a8d235dc-671c-46d5-b8a1-ccbd8fdaf621.jpg?type=f294_378" width="98" height="126" alt="꾸민듯안꾸민듯 1만원대찬스야!">
+                                    <div class="text">꾸민듯안꾸민듯1만원대찬스야!</div>
+                                </div>
+                                <div class="item">
+                                    <img class="image" src="https://s.pstatic.net/shopping.phinf/20231023_21/ead36c83-b888-4a2f-a639-97745a23f4b3.jpg?type=f294_378" width="98" height="126" alt="양말10+10장이 단돈1만원대래!">
+                                    <div class="text">양말10+10장이 단돈1만원대래!</div>
+                                </div>
+                                <div class="item">
+                                    <img class="image" src="https://s.pstatic.net/shopping.phinf/20231020_24/10ef2e87-dec9-4bc1-90c3-5887fd93b8b7.jpg?type=f294_378" width="98" height="126" alt="겨울 금방와요~ 단하루 2만원대!">
+                                    <div class="text">겨울 금방와요~ 단하루 2만원대!</div>
+                                </div>
+                                <div class="item">
+                                    <img class="image" src="https://s.pstatic.net/shopping.phinf/20230911_27/a7b5ad46-3955-45cc-8afb-98703d707895.jpg?type=f294_378" width="98" height="126" alt="거실에 깔았더니 밤새 안 깨고 자">
+                                    <div class="text">거실에 깔았더니 밤새 안 깨고 자</div>
+                                </div>
+                                <div class="item">
+                                    <img class="ad_image" src="https://s.pstatic.net/shopping.phinf/20231012_13/bb8c6c42-57da-4fdd-a3f5-5efdfd45b25d.jpg" width="248" height="146" alt="미소페 펌프스 인기 엄청나~">
+                                    <div>신규회원 10,000원 쿠폰</div>
+                                </div>
+                            </div>
+                        </div>
+                        <footer>
+                            <button class="prev"><span class="blind">이전 페이지</span></button>
+                            <div class="text"><span class="hot">쇼핑아이템</span>&nbsp;더보기&nbsp;1<span class="total">/13</span></div>
+                            <button class="next"><span class="blind">다음 페이지</span></button>
+                        </footer>
+                    </section>
+                </div>
+                <div id="main-right">
+                    <section id="main-login">
+                        <div>네이버를 더 안전하고 편리하게 이용하세요</div>
+                        <a href="#" id="main-login-button"><i></i>로그인</a>
+                        <div>
+                            <a href="#">아이디 찾기</a>
+                            <a href="#">비밀번호 찾기</a>
+                            <a href="#">회원가입</a>
+                        </div>
+                    </section>
+                    <aside id="main-right-ad"></aside>
+                    <section id="main-weather" class="main-weather-and-stock">
+                        <header></header>
+                        <div></div>
+                    </section>
+                    <section id="main-stock" class="main-weather-and-stock">
+                        <header></header>
+                        <div></div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+</body>
+</html>
